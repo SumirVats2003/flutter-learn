@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:learn/pages/home_page.dart';
+import 'package:learn/utils/constants.dart';
 
 // Chapter 7 - Forms, Stack and Navigation - A Login Page
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+  static const String routeName = "/login";
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -71,11 +73,15 @@ class _LoginPageState extends State<LoginPage> {
                     
                           ElevatedButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HomePage()
-                                )
+                              Constants.prefs?.setBool("loggedIn", true);
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => const HomePage()
+                              //   )
+                              // );
+                              Navigator.pushReplacementNamed(
+                                context, HomePage.routeName
                               );
                             },
                             child: const Text("Sign In"),
